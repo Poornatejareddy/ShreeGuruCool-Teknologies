@@ -23,8 +23,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en">
+      {/* Add the meta viewport tag here */}
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* You can also add other meta tags like description, charset, etc. */}
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <Navigation /> {/* ✅ Added Navbar */}
         <main className="min-h-screen">{children}</main>
         <Footer /> {/* ✅ Added Footer */}
