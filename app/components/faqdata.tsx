@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqData = [
   { question: "What is SAP SD?", answer: "SAP SD (Sales and Distribution) handles order processing, pricing, billing, and shipping." },
@@ -27,23 +27,25 @@ export default function FAQSection() {
               <span className="text-primary">{openIndex === index ? "−" : "+"}</span>
             </button>
 
-            {openIndex === index && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="p-4 text-gray-700 bg-gray-50 rounded-lg mt-2"
-              >
-                {faq.answer}
-              </motion.div>
-            )}
+            <AnimatePresence>
+              {openIndex === index && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="p-4 text-gray-700 bg-gray-50 rounded-lg mt-2"
+                >
+                  {faq.answer}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ))}
 
         {/* Ask a Question Section */}
         <div className="mt-8 p-6 bg-gray-100 rounded-lg shadow-md">
           <h3 className="text-lg font-semibold mb-2">Have more questions?</h3>
-          <p className="text-gray-600 mb-4">Ask us anything, and we'll get back to you!</p>
+          <p className="text-gray-600 mb-4">Ask us anything, and we&apos;ll get back to you!</p>
           <input
             type="text"
             placeholder="Type your question here..."

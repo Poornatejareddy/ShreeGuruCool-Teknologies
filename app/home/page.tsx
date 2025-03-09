@@ -1,15 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import HeroSection from '../components/herosection';
-import ReviewsSection from '../components/review';
-import Gallery from '../components/gallery';
 import { motion } from 'framer-motion';
-import { ArrowRight, Award, Users, MessageSquare, CheckCircle, BookOpen} from 'lucide-react';
-import HiringPartners from '../components/hiringpartner';
-import FAQSection from '../components/faqdata';
+import { Award, Users, MessageSquare, CheckCircle, BookOpen} from 'lucide-react';
+const FAQSection = dynamic(() => import('../components/faqdata'), { ssr: false });
+const HiringPartners = dynamic(() => import('../components/hiringpartner'), { ssr: false });
+const Gallery = dynamic(() => import('../components/gallery'), { ssr: false });
+const ReviewsSection = dynamic(() => import('../components/review'), { ssr: false });
+const HeroSection = dynamic(() => import( '../components/herosection'), {ssr: false});
+
 
 // Dynamic import with loading state handling
 const FadeInSection = dynamic(() => import('../components/FadeInSection'), {
@@ -28,27 +29,6 @@ const courses = [
   { title: "SAP SD", description: "Master order-to-cash cycles.", Icon: Users },
   { title: "SAP MM", description: "Procurement & inventory management.", Icon: Award },
   { title: "SAP S/4HANA", description: "Future-proof your ERP skills.", Icon: MessageSquare }
-];
-
-const reviews = [
-  {
-    name: "Amit Patel",
-    role: "SAP SD Consultant",
-    review: "The best SAP training experience! The mentors are fantastic, and the job placement support is exceptional. Within 3 months, I landed my dream role!",
-    image: "https://randomuser.me/api/portraits/men/32.jpg"
-  },
-  {
-    name: "Sneha Sharma",
-    role: "SAP MM Analyst",
-    review: "Practical approach, real-world case studies, and hands-on projects made all the difference. Highly recommend!",
-    image: "https://randomuser.me/api/portraits/women/45.jpg"
-  },
-  {
-    name: "Rahul Verma",
-    role: "SAP S/4HANA Developer",
-    review: "Comprehensive curriculum with industry-oriented insights. The interview prep sessions helped me ace my SAP certification and get hired!",
-    image: "https://randomuser.me/api/portraits/men/50.jpg"
-  }
 ];
 
 const blogs = [
@@ -97,7 +77,8 @@ const Index = () => {
         >
           Elevate your SAP career with our expert-led courses.  
           Get hands-on experience with real projects and case studies.  
-          Our dedicated **job assistance program** ensures you're always ahead in the industry.  
+          Our dedicated **job assistance program** ensures you&apos;re always ahead in the industry.
+  
         </motion.p>
       </FadeInSection>
 
@@ -183,7 +164,7 @@ const Index = () => {
 
       {/* Students Reviews */}
     
-      <ReviewsSection reviews={reviews} />
+      <ReviewsSection />
 
       {/* Latest Blogs */}
 

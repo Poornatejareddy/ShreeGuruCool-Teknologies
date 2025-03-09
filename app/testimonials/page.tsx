@@ -47,7 +47,8 @@ const Testimonials = () => {
         />
         <h3 className="text-xl font-semibold text-primary-dark">{testimonials[current].name}</h3>
         <p className="text-primary mb-2">{testimonials[current].role}</p>
-        <p className="text-gray-600 italic">"{testimonials[current].feedback}"</p>
+        <p className="text-gray-600 italic">&ldquo;{testimonials[current].feedback}&rdquo;</p>
+
       </div>
       <div className="mt-6 flex gap-4">
         <button onClick={prevTestimonial} className="px-4 py-2 bg-primary-dark text-white rounded-lg shadow-md hover:bg-primary transition-all">◀</button>

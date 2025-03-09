@@ -1,16 +1,17 @@
 'use client';
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  // ✅ Define types for event handlers
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
@@ -58,7 +59,7 @@ const ContactForm = () => {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Your Message"
-                rows="4"
+                rows={4}
                 className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 required
               ></textarea>
@@ -83,17 +84,16 @@ const ContactForm = () => {
 
       {/* Google Map Section */}
       <div className="max-w-4xl w-full mt-10">
-      <iframe
-  className="w-full h-72 rounded-lg shadow-lg"
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.3284193438126!2d77.7023281740502!3d12.9508243153355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1235e3ec686b%3A0xb6fef3cde9aeace1!2sShreeGuruCool%20teKnologies!5e0!3m2!1sen!2sin!4v1741259786885!5m2!1sen!2sin"
-  width="600"
-  height="450"
-  style={{ border: 0 }} // ✅ Corrected style format
-  allowFullScreen=""
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-></iframe>
-
+        <iframe
+          className="w-full h-72 rounded-lg shadow-lg"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.3284193438126!2d77.7023281740502!3d12.9508243153355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1235e3ec686b%3A0xb6fef3cde9aeace1!2sShreeGuruCool%20teKnologies!5e0!3m2!1sen!2sin!4v1741259786885!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   );

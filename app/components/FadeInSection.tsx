@@ -1,8 +1,13 @@
-// components/FadeInSection.jsx
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, ReactNode } from 'react';
 
-const FadeInSection = ({ children, className = '', direction = 'up' }) => {
-  const ref = useRef(null);
+interface FadeInSectionProps {
+  children: ReactNode;
+  className?: string;
+  direction?: 'up' | 'left' | 'right';
+}
+
+const FadeInSection: React.FC<FadeInSectionProps> = ({ children, className = '', direction = 'up' }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -14,7 +19,7 @@ const FadeInSection = ({ children, className = '', direction = 'up' }) => {
               left: 'fade-left-active',
               right: 'fade-right-active'
             };
-            
+
             entry.target.classList.add(classNames[direction]);
             observer.unobserve(entry.target);
           }
