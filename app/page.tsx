@@ -43,7 +43,7 @@ const blogs = [
   }
 ];
 
-const Index = () => {
+const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary-light to-white">
   
@@ -201,4 +201,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;
