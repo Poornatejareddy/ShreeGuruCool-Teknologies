@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import debounce from 'lodash.debounce';
@@ -14,24 +13,17 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const handleScroll = useCallback(
-    debounce(() => {
-      setScrolled(window.scrollY > 20);
-    }, 100),
-    []
-  );
-
   useEffect(() => {
+    const handleScroll = debounce(() => {
+      setScrolled(window.scrollY > 20);
+    }, 100);
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+  }, []);
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-transparent'
-      }`}
-    >
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
@@ -81,11 +73,7 @@ const Navigation = () => {
                   {item}
                 </Link>
               ))}
-              <Link
-                href="/auth/login"
-                className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:scale-105 transition"
-                onClick={() => setIsOpen(false)}
-              >
+              <Link href="/auth/login" className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:scale-105 transition" onClick={() => setIsOpen(false)}>
                 Login
               </Link>
             </div>
