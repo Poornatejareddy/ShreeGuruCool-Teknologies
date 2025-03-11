@@ -10,6 +10,8 @@ const HiringPartners = dynamic(() => import('./components/hiringpartner'), { ssr
 const Gallery = dynamic(() => import('./components/gallery'), { ssr: false });
 const ReviewsSection = dynamic(() => import('./components/review'), { ssr: false });
 const HeroSection = dynamic(() => import('./components/herosection'), { ssr: false });
+const Chatbot = dynamic(() => import('./components/chatbot'), { ssr: false, loading: () => <div className="fixed bottom-5 right-5 p-3 bg-gray-200 rounded-full shadow-md">Loading...</div> });
+
 
 // Dynamic import with loading state handling
 const FadeInSection = dynamic(() => import('./components/FadeInSection'), {
@@ -197,6 +199,11 @@ const Home = () => {
   
       {/* Image Gallery */}
       <Gallery />
+
+      <div className="fixed bottom-5 right-5">
+        <Chatbot />
+      </div>
+
     </div>
   );
 };
