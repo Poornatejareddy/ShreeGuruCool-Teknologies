@@ -1,11 +1,18 @@
 'use client';
 
 import Image from 'next/image';
-import { UserIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 
-const ImageWithFallback = ({ src, alt, width, height, className }: any) => {
-  const [imgSrc, setImgSrc] = useState(src);
+interface ImageWithFallbackProps {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+}
+
+const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({ src, alt, width, height, className }) => {
+  const [imgSrc, setImgSrc] = useState<string>(src);
 
   const handleError = () => {
     setImgSrc('/fallback-avatar.png'); // or use a default icon here
